@@ -12,6 +12,7 @@ MinFormula::~MinFormula() {
 
 void MinFormula::addCell(Cell *c) {
     cells.push_back(c);
+    update();
 }
 
 void MinFormula::removeCell(Cell *c) {

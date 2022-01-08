@@ -11,6 +11,7 @@ MeanFormula::~MeanFormula() {
 
 void MeanFormula::addCell(Cell *c) {
     cells.push_back(c);
+    update();
 }
 
 void MeanFormula::removeCell(Cell *c) {

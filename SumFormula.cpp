@@ -12,6 +12,7 @@ SumFormula::~SumFormula() {
 
 void SumFormula::addCell(Cell *c) {
     cells.push_back(c);
+    update();
 }
 
 void SumFormula::removeCell(Cell *c) {

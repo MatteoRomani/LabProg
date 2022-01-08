@@ -36,16 +36,15 @@ MyFrame::MyFrame(const wxString &title)
 }
 
 void MyFrame::clickButton(wxCommandEvent &evt) {
-    float resSum = sumFormula->formula();
-    float resMin = minFormula->formula();
-    float resMax = maxFormula->formula();
-    float resMean = meanFormula->formula();
+    float resSum = sumFormula->getResult();
+    float resMin = minFormula->getResult();
+    float resMax = maxFormula->getResult();
+    float resMean = meanFormula->getResult();
 
-    minWriteText->SetValue(wxString::Format(wxT("%f"),resMin));
-    maxWriteText->SetValue(wxString::Format(wxT("%f"),resMax));
-    sumWriteText->SetValue(wxString::Format(wxT("%f"),resSum));
-    meanWriteText->SetValue(wxString::Format(wxT("%f"),resMean));
-
+    minWriteText->SetValue(wxString::Format(wxT("%f"), resMin));
+    maxWriteText->SetValue(wxString::Format(wxT("%f"), resMax));
+    sumWriteText->SetValue(wxString::Format(wxT("%f"), resSum));
+    meanWriteText->SetValue(wxString::Format(wxT("%f"), resMean));
 
 
 }
