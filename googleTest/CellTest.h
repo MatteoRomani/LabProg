@@ -40,7 +40,7 @@ TEST_F(CellTest, AddObserver){
     maxFormula->addCell(cell);
     meanFormula->addCell(cell);
 
-    EXPECT_EQ(4, cell->observersSize()) << "non sono stati aggiunti correttamente gli osservatori oppure il numero è sfalsato";
+    EXPECT_EQ(4, cell->observersSize()) << "non sono stati aggiunti correttamente gli osservatori";
     ASSERT_TRUE(cell->isObserver(sumFormula)) << "sumFormula non è stata aggiunta correttamente agli osservatori";
     ASSERT_TRUE(cell->isObserver(maxFormula)) << "maxFormula non è stata aggiunta correttamente agli osservatori";
     ASSERT_TRUE(cell->isObserver(minFormula)) << "minFormula non è stata aggiunta correttamente agli osservatori";

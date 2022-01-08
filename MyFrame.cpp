@@ -9,7 +9,7 @@ wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_BUTTON(1, MyFrame::clickButton)
 wxEND_EVENT_TABLE()
 
-
+// Tolta la possibilità di fare resize del frame perchè i posizionamenti sono relativi, non assoluti
 MyFrame::MyFrame(const wxString &title)
         : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxSize(800, 570)) {
     grid = new wxGrid(this, wxID_ANY,wxDefaultPosition, wxSize(483,570));
@@ -53,13 +53,14 @@ void MyFrame::clickButton(wxCommandEvent &evt) {
 void MyFrame::newCell(wxGridEvent &evt) {
     //se la cella selezionata ha gia un valore, allora non devo aggiungere una nuova cella
     //devo cercare la cella con il valore relativo e modificarlo
-    std::cout <<"Vecchio valore: "<<grid->GetCellValue(evt.GetRow(),evt.GetCol()) << std::endl;
+    std::cout << "Vecchio valore: " << grid->GetCellValue(evt.GetRow(), evt.GetCol()) << std::endl;
     std::cout << "Valore corrente appena inserito: " << evt.GetString() << std::endl;
 
     if(grid->GetCellValue(evt.GetRow(),evt.GetCol()) != "") {
-        for(auto itr = cells.begin(); itr != cells.end(); itr++){
-            std::cout <<"valore da cercare nelle celle usando *itr: " << (float)wxAtof(grid->GetCellValue(evt.GetRow(),evt.GetCol())) << std::endl;
-            if((*itr)->getValue() == wxAtof(grid->GetCellValue(evt.GetRow(),evt.GetCol()))){
+        for(auto itr = cells.begin(); itr != cells.end(); itr++) {
+            std::cout << "Valore da cercare nelle celle usando *itr: "
+                      << (float) wxAtof(grid->GetCellValue(evt.GetRow(), evt.GetCol())) << std::endl;
+            if ((*itr)->getValue() == wxAtof(grid->GetCellValue(evt.GetRow(), evt.GetCol()))) {
                 sumFormula->removeCell((*itr));
                 minFormula->removeCell((*itr));
                 maxFormula->removeCell((*itr));
