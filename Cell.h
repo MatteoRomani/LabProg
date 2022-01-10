@@ -12,15 +12,15 @@
 
 class Cell : public Subject {
 public:
-    Cell(float value = 0) : value(value) {}
+    explicit Cell(float value = 0) : value(value) {}
 
-    ~Cell() {}
+    ~Cell() = default;
 
-    virtual void addObserver(Observer *o);
+    void addObserver(Observer *o) override;
 
-    virtual void removeObserver(Observer *o);
+    void removeObserver(Observer *o) override;
 
-    virtual void notify();
+    void notify() override;
 
     virtual bool isObserver(Observer *o);
 

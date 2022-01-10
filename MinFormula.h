@@ -12,7 +12,7 @@
 
 class MinFormula : public Observer {
 public:
-    MinFormula() {}
+    MinFormula() = default;
 
     ~MinFormula();
 
