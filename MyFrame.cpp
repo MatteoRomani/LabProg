@@ -56,9 +56,9 @@ void MyFrame::newCell(wxGridEvent &evt) {
     std::cout << "Valore corrente appena inserito: " << evt.GetString() << std::endl;
 
     if(grid->GetCellValue(evt.GetRow(),evt.GetCol()) != "") {
-        for(auto itr = cells.begin(); itr != cells.end(); itr++) {
-            std::cout << "Valore da cercare nelle celle usando *itr: "
-                      << (float) wxAtof(grid->GetCellValue(evt.GetRow(), evt.GetCol())) << std::endl;
+        std::cout << "Valore da cercare nelle celle usando *itr: "
+                  << (float) wxAtof(grid->GetCellValue(evt.GetRow(), evt.GetCol())) << std::endl;
+        for (auto itr = cells.begin(); itr != cells.end(); itr++) {
             if ((*itr)->getValue() == wxAtof(grid->GetCellValue(evt.GetRow(), evt.GetCol()))) {
                 sumFormula->removeCell((*itr));
                 minFormula->removeCell((*itr));
