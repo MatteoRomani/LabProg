@@ -17,16 +17,12 @@ void MaxFormula::removeCell(Cell *c) {
     cells.remove(c);
 }
 void MaxFormula::update(){
-    formula();
-}
-float MaxFormula::formula() {
     if (cells.empty())
-        return 0;
+        return;
     auto max = cells.begin();
     for (auto itr = cells.begin(); itr != cells.end(); itr++) {
         if((*max)->getValue() < (*itr)->getValue())
             max = itr;
     }
     result = (*max)->getValue();
-    return result;
 }

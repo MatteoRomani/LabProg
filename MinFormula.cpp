@@ -20,17 +20,13 @@ void MinFormula::removeCell(Cell *c) {
 }
 
 void MinFormula::update() {
-    formula();
-}
-
-float MinFormula::formula() {
     if (cells.size() == 0)
-        return 0;
+        return;
     auto min = cells.begin();
     for (auto itr = cells.begin(); itr != cells.end(); itr++) {
         if ((*min)->getValue() > (*itr)->getValue())
             min = itr;
     }
     result = (*min)->getValue();
-    return result;
 }
+

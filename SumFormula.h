@@ -16,13 +16,12 @@ public:
 
     ~SumFormula();
 
-    virtual void addCell(Cell *c);
+    void addCell(Cell *c);
 
-    virtual void removeCell(Cell *c);
+    void removeCell(Cell *c);
 
-    virtual void update() override;
+    void update() override;
 
-    virtual float formula() override;
 
 private:
     std::list<Cell *> cells;

@@ -19,16 +19,11 @@ void MeanFormula::removeCell(Cell *c) {
 }
 
 void MeanFormula::update() {
-    formula();
-}
-
-float MeanFormula::formula() {
     if (cells.size() == 0)
-        return 0;
+        return;
     float sum = 0;
     for (auto itr = cells.begin(); itr != cells.end(); itr++)
         sum += (*itr)->getValue();
     float mean = sum / cells.size();
     result = mean;
-    return mean;
 }

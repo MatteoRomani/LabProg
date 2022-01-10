@@ -8,6 +8,7 @@
 
 #include <list>
 #include "Subject.h"
+#include "Observer.h"
 
 class Cell : public Subject {
 public:

@@ -20,14 +20,9 @@ void SumFormula::removeCell(Cell *c) {
 }
 
 void SumFormula::update() {
-    formula();
-}
-
-float SumFormula::formula() {
     float sum = 0;
     for (auto itr = cells.begin(); itr != cells.end(); itr++) {
         sum += (*itr)->getValue();
     }
     result = sum;
-    return sum;
 }

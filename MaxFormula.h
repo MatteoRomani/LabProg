@@ -13,13 +13,12 @@ public:
 
     ~MaxFormula();
 
-    virtual void addCell(Cell *c);
+    void addCell(Cell *c);
 
-    virtual void removeCell(Cell *c);
+    void removeCell(Cell *c);
 
     void update() override;
 
-    float formula() override;
 
 
 private:
