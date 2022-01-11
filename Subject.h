@@ -9,6 +9,7 @@
 
 class Subject {
 public:
+
     ~Subject() = default;
 
     virtual void addObserver(Observer *o) = 0;

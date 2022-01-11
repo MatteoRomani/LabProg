@@ -55,10 +55,7 @@ void MyFrame::newCell(wxGridEvent &evt) {
         }
     }
     Cell *cell = new Cell(wxAtof(evt.GetString()));
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(maxFormula);
-    cell->addObserver(meanFormula);
+
 
     sumFormula->addCell(cell);
     minFormula->addCell(cell);

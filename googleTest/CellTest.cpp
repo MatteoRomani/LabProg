@@ -17,10 +17,7 @@ void CellTest::SetUp() {
     maxFormula = new MaxFormula();
 
     for (int i = 0; i < 4; i++) {
-        cells[i].addObserver(sumFormula);
-        cells[i].addObserver(maxFormula);
-        cells[i].addObserver(minFormula);
-        cells[i].addObserver(meanFormula);
+
 
         sumFormula->addCell(&cells[i]);
         minFormula->addCell(&cells[i]);

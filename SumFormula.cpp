@@ -11,6 +11,7 @@ SumFormula::~SumFormula() {
 }
 
 void SumFormula::addCell(Cell *c) {
+    c->addObserver(this);
     cells.push_back(c);
     update();
 }
