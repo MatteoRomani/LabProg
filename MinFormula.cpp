@@ -16,6 +16,7 @@ void MinFormula::addCell(Cell *c) {
 }
 
 void MinFormula::removeCell(Cell *c) {
+    c->removeObserver(this);
     cells.remove(c);
 }
 

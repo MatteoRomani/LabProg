@@ -5,9 +5,9 @@
 #ifndef LABPROG_OBSERVER_H
 #define LABPROG_OBSERVER_H
 
-
 class Observer {
 public:
+    ~Observer() = default;
 
     virtual void update() = 0;
 

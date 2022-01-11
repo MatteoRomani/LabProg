@@ -20,7 +20,7 @@ public:
 
     void removeCell(Cell *c);
 
-    virtual void update() override;
+    virtual void update();
 
 
 private:

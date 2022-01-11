@@ -15,6 +15,7 @@ void MeanFormula::addCell(Cell *c) {
 }
 
 void MeanFormula::removeCell(Cell *c) {
+    c->removeObserver(this);
     cells.remove(c);
 }
 

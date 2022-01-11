@@ -6,14 +6,12 @@
 
 wxBEGIN_EVENT_TABLE(MyFrame, wxFrame)
     EVT_GRID_CELL_CHANGING(MyFrame::newCell)
-    EVT_BUTTON(1, MyFrame::clickButton)
 wxEND_EVENT_TABLE()
 
-// Tolta la possibilità di fare resize del frame perchè i posizionamenti sono relativi, non assoluti
+
 MyFrame::MyFrame(const wxString &title)
         : wxFrame(nullptr, wxID_ANY, title, wxDefaultPosition, wxSize(800, 570)) {
     grid = new wxGrid(this, wxID_ANY,wxDefaultPosition, wxSize(483,570));
-    wxButton *button = new wxButton(this, 1, "Calculate", wxPoint(575,460), wxSize(150,50));
 
     minWriteText = new wxTextCtrl(this, wxID_ANY, "", wxPoint(575,70), wxSize(150,30),wxTE_READONLY);
     maxWriteText= new wxTextCtrl(this, wxID_ANY, "", wxPoint(575,130), wxSize(150,30),wxTE_READONLY);
@@ -35,23 +33,9 @@ MyFrame::MyFrame(const wxString &title)
 
 }
 
-void MyFrame::clickButton(wxCommandEvent &evt) {
-    float resSum = sumFormula->getResult();
-    float resMin = minFormula->getResult();
-    float resMax = maxFormula->getResult();
-    float resMean = meanFormula->getResult();
 
-    minWriteText->SetValue(wxString::Format(wxT("%f"), resMin));
-    maxWriteText->SetValue(wxString::Format(wxT("%f"), resMax));
-    sumWriteText->SetValue(wxString::Format(wxT("%f"), resSum));
-    meanWriteText->SetValue(wxString::Format(wxT("%f"), resMean));
-
-
-}
 
 void MyFrame::newCell(wxGridEvent &evt) {
-    //se la cella selezionata ha gia un valore, allora non devo aggiungere una nuova cella
-    //devo cercare la cella con il valore relativo e modificarlo
     std::cout << "Vecchio valore: " << grid->GetCellValue(evt.GetRow(), evt.GetCol()) << std::endl;
     std::cout << "Valore corrente appena inserito: " << evt.GetString() << std::endl;
 
@@ -82,6 +66,16 @@ void MyFrame::newCell(wxGridEvent &evt) {
     meanFormula->addCell(cell);
 
     cells.push_back(cell);
+
+    float resSum = sumFormula->getResult();
+    float resMin = minFormula->getResult();
+    float resMax = maxFormula->getResult();
+    float resMean = meanFormula->getResult();
+
+    minWriteText->SetValue(wxString::Format(wxT("%f"), resMin));
+    maxWriteText->SetValue(wxString::Format(wxT("%f"), resMax));
+    sumWriteText->SetValue(wxString::Format(wxT("%f"), resSum));
+    meanWriteText->SetValue(wxString::Format(wxT("%f"), resMean));
 
 }
 

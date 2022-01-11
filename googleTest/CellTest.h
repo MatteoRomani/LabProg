@@ -16,7 +16,8 @@ class CellTest : public ::testing::Test {
 protected:
     void SetUp() override;
 
-    Cell *cell;
+    Cell *cells;
+
     SumFormula *sumFormula;
     MinFormula *minFormula;
     MaxFormula *maxFormula;
@@ -24,80 +25,33 @@ protected:
 };
 
 TEST_F(CellTest, getSetCell) {
-    ASSERT_EQ(0, cell->getValue());
-    cell->setValue(12);
-    ASSERT_EQ(12, cell->getValue());
+    ASSERT_EQ(0, cells[0].getValue());
+    cells[0].setValue(12);
+    ASSERT_EQ(12, cells[0].getValue());
 }
 
-TEST_F(CellTest, AddObserver){
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(meanFormula);
-    cell->addObserver(maxFormula);
-
-    sumFormula->addCell(cell);
-    minFormula->addCell(cell);
-    maxFormula->addCell(cell);
-    meanFormula->addCell(cell);
-
-    EXPECT_EQ(4, cell->observersSize()) << "non sono stati aggiunti correttamente gli osservatori";
-    ASSERT_TRUE(cell->isObserver(sumFormula)) << "sumFormula non è stata aggiunta correttamente agli osservatori";
-    ASSERT_TRUE(cell->isObserver(maxFormula)) << "maxFormula non è stata aggiunta correttamente agli osservatori";
-    ASSERT_TRUE(cell->isObserver(minFormula)) << "minFormula non è stata aggiunta correttamente agli osservatori";
-    ASSERT_TRUE(cell->isObserver(meanFormula)) << "meanFormula non è stata aggiunta correttamente agli osservatori";
+TEST_F(CellTest, Notify) {
+    cells[0].setValue(15.6);
+    cells[1].setValue(6);
+    cells[2].setValue(4);
+    cells[3].setValue(2);
+    ASSERT_FLOAT_EQ(27.6, sumFormula->getResult());
+    ASSERT_FLOAT_EQ(2, minFormula->getResult());
+    ASSERT_FLOAT_EQ(15.6, maxFormula->getResult());
+    ASSERT_FLOAT_EQ(6.9, meanFormula->getResult());
 }
 
-TEST_F(CellTest, RemoveObsever){
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(meanFormula);
-    cell->addObserver(maxFormula);
+TEST_F(CellTest, RemoveObsever) {
+    sumFormula->removeCell(&cells[0]);
 
-    cell->removeObserver(sumFormula);
-    ASSERT_FALSE(cell->isObserver(sumFormula));
-    ASSERT_EQ(3, cell->observersSize());
-    cell->removeObserver(minFormula);
-    ASSERT_FALSE(cell->isObserver(minFormula));
-    ASSERT_EQ(2, cell->observersSize());
-    cell->removeObserver(meanFormula);
-    ASSERT_FALSE(cell->isObserver(meanFormula));
-    ASSERT_EQ(1, cell->observersSize());
-    cell->removeObserver(maxFormula);
-    ASSERT_FALSE(cell->isObserver(maxFormula));
-    ASSERT_EQ(0, cell->observersSize());
-}
-
-TEST_F(CellTest, Notify){
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(maxFormula);
-    cell->addObserver(meanFormula);
-
-    sumFormula->addCell(cell);
-    minFormula->addCell(cell);
-    maxFormula->addCell(cell);
-    meanFormula->addCell(cell);
-
-    cell->setValue(12);
-
-    ASSERT_EQ(12, sumFormula->getResult())<<"valore non aggiornato correttamente";
-    ASSERT_EQ(12, minFormula->getResult());
-    ASSERT_EQ(12, maxFormula->getResult());
-    ASSERT_EQ(12, meanFormula->getResult());
-}
-
-TEST_F(CellTest, DuplicateFormule){
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(maxFormula);
-    cell->addObserver(meanFormula);
-
-    cell->addObserver(sumFormula);
-    cell->addObserver(minFormula);
-    cell->addObserver(maxFormula);
-    cell->addObserver(meanFormula);
-
-    ASSERT_EQ(4, cell->observersSize()) << "Gli stessi osservatori vengono aggiunti più volte";
+    cells[0].setValue(15.6);
+    cells[1].setValue(6);
+    cells[2].setValue(4);
+    cells[3].setValue(2);
+    ASSERT_FLOAT_EQ(12, sumFormula->getResult());
+    ASSERT_FLOAT_EQ(2, minFormula->getResult());
+    ASSERT_FLOAT_EQ(15.6, maxFormula->getResult());
+    ASSERT_FLOAT_EQ(6.9, meanFormula->getResult());
 }
 
 

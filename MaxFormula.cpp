@@ -14,6 +14,7 @@ void MaxFormula::addCell(Cell *c) {
     update();
 }
 void MaxFormula::removeCell(Cell *c) {
+    c->removeObserver(this);
     cells.remove(c);
 }
 void MaxFormula::update(){

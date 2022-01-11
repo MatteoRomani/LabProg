@@ -16,6 +16,7 @@ void SumFormula::addCell(Cell *c) {
 }
 
 void SumFormula::removeCell(Cell *c) {
+    c->removeObserver(this);
     cells.remove(c);
 }
 

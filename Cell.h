@@ -22,13 +22,11 @@ public:
 
     void notify() override;
 
-    virtual bool isObserver(Observer *o);
 
     float getValue() const;
 
     void setValue(float value);
 
-    int observersSize() const;
 private:
     float value;
     std::list<Observer*> observers;

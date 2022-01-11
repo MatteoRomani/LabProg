@@ -11,8 +11,8 @@ include(${wxWidgets_USE_FILE})
 
 #START googleTest
 add_subdirectory(googleTest)
-set(SOURCE_FILES Observer.h Subject.h Observer.cpp Subject.cpp MaxFormula.cpp MaxFormula.h MinFormula.cpp MinFormula.h MeanFormula.cpp MeanFormula.h SumFormula.cpp SumFormula.h Cell.cpp Cell.h)
-add_executable(LabProg Observer.h Subject.h Observer.cpp Subject.cpp MaxFormula.cpp MaxFormula.h MinFormula.cpp MinFormula.h MeanFormula.cpp MeanFormula.h SumFormula.cpp SumFormula.h Cell.cpp Cell.h MyApp.cpp MyApp.h MyFrame.cpp MyFrame.h)
+set(SOURCE_FILES Observer.h Subject.h Observer.cpp MaxFormula.cpp MaxFormula.h MinFormula.cpp MinFormula.h MeanFormula.cpp MeanFormula.h SumFormula.cpp SumFormula.h Cell.cpp Cell.h)
+add_executable(LabProg Observer.h Subject.h Observer.cpp MaxFormula.cpp MaxFormula.h MinFormula.cpp MinFormula.h MeanFormula.cpp MeanFormula.h SumFormula.cpp SumFormula.h Cell.cpp Cell.h MyApp.cpp MyApp.h MyFrame.cpp MyFrame.h Subject.cpp)
 add_library(core ${SOURCE_FILES})
 #END googleTest
 

@@ -20,7 +20,6 @@ public:
     MyFrame(const wxString& title);
 private:
     void newCell(wxGridEvent &evt);
-    void clickButton(wxCommandEvent &evt);
 
     std::list<Cell*> cells;
 
