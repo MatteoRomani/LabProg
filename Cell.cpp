@@ -12,7 +12,7 @@ void Cell::removeObserver(Observer *o) {
     observers.remove(o);
 }
 
-void Cell::notify() {
+void Cell::notify() const {
     for (auto itr = observers.begin(); itr != observers.end(); itr++)
         (*itr)->update();
 }

@@ -16,7 +16,7 @@ public:
 
     virtual void removeObserver(Observer *o) = 0;
 
-    virtual void notify() = 0;
+    virtual void notify() const = 0;
 };
 
 

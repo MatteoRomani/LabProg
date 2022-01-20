@@ -6,6 +6,6 @@
 #include "Observer.h"
 
 
-float Observer::getResult() {
+float Observer::getResult() const {
     return result;
 }

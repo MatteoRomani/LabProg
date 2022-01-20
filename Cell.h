@@ -20,7 +20,7 @@ public:
 
     void removeObserver(Observer *o) override;
 
-    void notify() override;
+    void notify() const override;
 
 
     float getValue() const;

@@ -11,7 +11,7 @@ public:
 
     virtual void update() = 0;
 
-    float getResult();
+    float getResult() const;
 
 protected:
     float result = 0;
